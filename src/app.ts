@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-// Api
+// Api for User
 app.use("/api/v1/user", userRoutes);
 
 export default app;
