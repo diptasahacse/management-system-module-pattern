@@ -5,7 +5,9 @@ import User from "./user.model";
 
 // => create user
 export const createUserToDB = async (payload: IUser): Promise<IUser> => {
-  const user = new User(payload);
+  const user = new User(payload); // Here, User is class and user is instance of that class
+  console.log(user.fullName())
+  //Here
   await user.save();
   return user;
 };
@@ -32,3 +34,4 @@ export const getUserByIdFromDB = async (
 
   return users;
 };
+

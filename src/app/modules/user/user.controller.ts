@@ -40,6 +40,8 @@ export const getUserById = async (
   });
 };
 
+
+
 // Pattern
 // Route => controller
 // Controller => service

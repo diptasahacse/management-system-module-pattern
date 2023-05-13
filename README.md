@@ -1,0 +1,45 @@
+**What is Instance Method?**
+Means, Instance Method = Instance+Method
+here Instance means,
+example,
+class Parent {
+......
+.....
+}
+const mother = new Parent(....) // here, mother is instance of Parent.
+
+Means,
+Instance Method is a instance of Class + some methods
+
+Example,
+
+const user = new User(payload); // Here, User is class and user is instance of that class
+await user.save(); // here, user is a instance and save is a method. this means user.save() is an instance method. this instance method is builtin.
+
+Let's create a custom instance method
+//1. create an interface for methods
+export interface IUserMethods {
+fullName(): string;
+}
+
+//2. Create a new Model type that knows about IUserMethods...
+type UserModel = Model<IUser, {}, IUserMethods>;
+
+//3. Pass IUser, UserModel, and IUserMethods in schema
+const userSchema = new Schema<IUser, UserModel, IUserMethods>({
+.......
+.......
+
+//4. Now, I have to write function definition like this
+userSchema.method("fullName", function fullName() {
+return (
+this.name.firstName + " " + this.name.middleName + " " + this.name.lastName
+);
+});
+});
+
+//5. I have to pass that UserModel in User model generic as a parameter. like this
+const User = model<IUser, UserModel>("User", userSchema);
+
+//6. Now I can use fullname function with the help of instance of User model, like this
+console.log(user.fullName())
