@@ -4,7 +4,7 @@ import User from "./user.model";
 // Database Query => create user
 export const createUserToDB = async () => {
     const user = new User({
-      id: "77667",
+      id: "7ee70880ttt667",
       role: "student",
       password: "12345678",
       name: {
@@ -20,5 +20,5 @@ export const createUserToDB = async () => {
       permanentAddress: "Khulna",
     });
     await user.save();
-    console.log("User is Created");
+    return user
   };
