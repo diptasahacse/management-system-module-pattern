@@ -6,7 +6,7 @@ const router = express.Router();
 // Get Users
 router.get("/", getUsers);
 
-// get user by id -> create user
+// get user by id -> get user
 router.get("/:id", getUserById); // same name is required for getUserById function
 
 // Post -> create user

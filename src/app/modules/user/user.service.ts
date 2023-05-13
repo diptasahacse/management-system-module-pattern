@@ -20,7 +20,15 @@ export const getUsersFromDB = async (): Promise<IUser[]> => {
 export const getUserByIdFromDB = async (
   payload: string
 ): Promise<IUser | null> => {
-  const users = await User.findOne({ id: payload });
+  const users = await User.findOne(
+    { id: payload },
+
+    {
+      //this is called field filtering
+      name: 1, //1 means true
+      email: 1,
+    }
+  );
 
   return users;
 };
