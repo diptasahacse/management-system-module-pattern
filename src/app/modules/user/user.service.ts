@@ -15,3 +15,12 @@ export const getUsersFromDB = async (): Promise<IUser[]> => {
 
   return users;
 };
+
+// get user by id from db
+export const getUserByIdFromDB = async (
+  payload: string
+): Promise<IUser | null> => {
+  const users = await User.findOne({ id: payload });
+
+  return users;
+};
