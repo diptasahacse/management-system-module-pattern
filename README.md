@@ -44,5 +44,19 @@ const User = model<IUser, UserModel>("User", userSchema);
 //6. Now I can use fullname function with the help of instance of User model, like this
 console.log(user.fullName())
 
-
 Summery of the instance method is, Instance method is only work when I create a instance with the help of model
+
+**_What is static in Class?_**
+Static is a attached methods of class, which i can directly call with That class( not instance of class).
+// Example
+Class => Attached --> Methods -->Directly call using class
+
+Example for instance,
+const user = new User()
+user.fullName()
+
+Example for Static
+User.fullName()
+
+
+**How to Implement both Static and Method?**

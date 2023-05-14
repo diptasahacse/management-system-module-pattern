@@ -6,7 +6,7 @@ import User from "./user.model";
 // => create user
 export const createUserToDB = async (payload: IUser): Promise<IUser> => {
   const user = new User(payload); // Here, User is class and user is instance of that class
-  console.log(user.fullName())
+  console.log(user.fullName());
   //Here
   await user.save();
   return user;
@@ -35,5 +35,22 @@ export const getUserByIdFromDB = async (
   return users;
 };
 
+// get user by id from db
+export const getAdminUsersFromDB = async () => {
+  const admins = await User.getAdminUsers();
+
+  return admins;
+};
+
+/*
+Class => Attached --> Methods -->Directly call using class
+
+Example for instance,
+const user = new User()
+user.fullName()
+
+Example for Static
+User.fullName()
 
 
+*/
