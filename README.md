@@ -58,5 +58,51 @@ user.fullName()
 Example for Static
 User.fullName()
 
-
 **How to Implement both Static and Method?**
+
+1. make interface
+
+  <code>
+   // Static + Method
+   export interface UserModel extends Model<IUser, {}, IUserMethods> {
+   getAdminUsers(): Promise<HydratedDocument<IUser, IUserMethods>>;
+   }
+  </code>
+
+2. In model file, I have to replace instance method's UserModel with that UserModel
+   import { IUser, IUserMethods, UserModel } from "./user.interface";
+
+<!-- We don't use this UserModel, We use  imported UserModel for interface-->
+<code>
+
+// type UserModel = Model<IUser, {}, IUserMethods>;
+
+const userSchema = new Schema<IUser, UserModel, IUserMethods>({
+.....
+..........
+..........
+});
+</code>
+
+3. Then, using static method we can directly access using this and make a database query
+
+<code>
+userSchema.static("getAdminUsers", async function getAdminUsers() {
+const admins = await this.find({ role: "admin" });
+
+return admins
+});
+
+</code>
+
+4.  Now, I can easily use getAdminUsers method to get all admin from services file. like this
+
+       <code>
+       // get user by id from db
+        export const getAdminUsersFromDB = async () => {
+        const admins = await User.getAdminUsers();
+
+        return admins;
+        };
+
+    </code>

@@ -12,7 +12,7 @@ const router = express.Router();
 router.get("/", getUsers);
 
 // Get Users
-router.get("/all-admins", getAllAdmins);
+router.get("/admins", getAllAdmins); // for confusion with /admin and /:id, we have to keep /admin above /:id, 
 
 // get user by id -> get user
 router.get("/:id", getUserById); // same name is required for getUserById function
